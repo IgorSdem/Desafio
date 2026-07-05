@@ -76,6 +76,12 @@ export function App() {
   }
 
   async function handleDeletePerson(id: number) {
+    const confirmed = window.confirm('Deseja realmente excluir esta pessoa e todas as suas transacoes?');
+
+    if (!confirmed) {
+      return;
+    }
+
     setError('');
 
     try {
@@ -105,6 +111,12 @@ export function App() {
   }
 
   async function handleDeleteTransaction(id: number) {
+    const confirmed = window.confirm('Deseja realmente excluir esta transacao?');
+
+    if (!confirmed) {
+      return;
+    }
+
     setError('');
 
     try {

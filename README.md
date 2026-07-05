@@ -20,6 +20,8 @@ dotnet run
 
 A API ficara disponivel em `http://localhost:5226`.
 
+Em ambiente de desenvolvimento, a documentacao Swagger ficara disponivel em `http://localhost:5226/swagger`.
+
 ### Front-end
 
 ```bash
