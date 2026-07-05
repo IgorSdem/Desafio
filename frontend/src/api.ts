@@ -35,6 +35,9 @@ export const api = {
       method: 'POST',
       body: JSON.stringify({ description, value, type, personId }),
     }),
+  deleteTransaction: (id: number) =>
+    request<void>(`/api/transactions/${id}`, {
+      method: 'DELETE',
+    }),
   getTotals: () => request<Totals>('/api/totals'),
 };
-

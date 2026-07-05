@@ -34,7 +34,7 @@ O front-end ficara disponivel em `http://localhost:5173`.
 
 - Pessoas podem ser criadas, listadas e excluidas.
 - Ao excluir uma pessoa, todas as transacoes associadas a ela tambem sao removidas.
-- Transacoes podem ser criadas e listadas.
+- Transacoes podem ser criadas, listadas e excluidas.
 - Toda transacao precisa referenciar uma pessoa existente.
 - Pessoas menores de 18 anos so podem receber transacoes do tipo despesa.
 - A consulta de totais mostra receitas, despesas e saldo por pessoa, alem do total geral.
@@ -46,5 +46,5 @@ O front-end ficara disponivel em `http://localhost:5173`.
 - `DELETE /api/people/{id}`
 - `GET /api/transactions`
 - `POST /api/transactions`
+- `DELETE /api/transactions/{id}`
 - `GET /api/totals`
-

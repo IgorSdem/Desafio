@@ -104,6 +104,17 @@ export function App() {
     }
   }
 
+  async function handleDeleteTransaction(id: number) {
+    setError('');
+
+    try {
+      await api.deleteTransaction(id);
+      await loadData();
+    } catch (exception) {
+      setError(exception instanceof Error ? exception.message : 'Nao foi possivel excluir a transacao.');
+    }
+  }
+
   const personOptions = people.map((person) => (
     <option key={person.id} value={person.id}>
       {person.name} ({person.age} anos)
@@ -163,7 +174,7 @@ export function App() {
               <article className="row-card" key={person.id}>
                 <div>
                   <strong>{person.name}</strong>
-                  <span>ID {person.id} · {person.age} anos</span>
+                  <span>ID {person.id} - {person.age} anos</span>
                 </div>
                 <button
                   className="icon-button danger"
@@ -230,11 +241,21 @@ export function App() {
               <article className="row-card" key={transaction.id}>
                 <div>
                   <strong>{transaction.description}</strong>
-                  <span>{transaction.personName} · {transaction.type === 'Income' ? 'Receita' : 'Despesa'}</span>
+                  <span>{transaction.personName} - {transaction.type === 'Income' ? 'Receita' : 'Despesa'}</span>
                 </div>
-                <b className={transaction.type === 'Income' ? 'income' : 'expense'}>
-                  {money.format(transaction.value)}
-                </b>
+                <div className="row-actions">
+                  <b className={transaction.type === 'Income' ? 'income' : 'expense'}>
+                    {money.format(transaction.value)}
+                  </b>
+                  <button
+                    className="icon-button danger"
+                    type="button"
+                    onClick={() => handleDeleteTransaction(transaction.id)}
+                    title="Excluir transacao"
+                  >
+                    <Trash2 size={17} />
+                  </button>
+                </div>
               </article>
             ))}
             {!loading && transactions.length === 0 && <p className="empty">Nenhuma transacao cadastrada.</p>}

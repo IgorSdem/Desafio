@@ -154,6 +154,21 @@ app.MapPost("/api/transactions", async (CreateTransactionRequest request, AppDbC
         transaction.CreatedAt));
 });
 
+app.MapDelete("/api/transactions/{id:int}", async (int id, AppDbContext db) =>
+{
+    var transaction = await db.Transactions.FindAsync(id);
+
+    if (transaction is null)
+    {
+        return Results.NotFound(new ErrorResponse("Transacao nao encontrada."));
+    }
+
+    db.Transactions.Remove(transaction);
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
 app.MapGet("/api/totals", async (AppDbContext db) =>
 {
     var people = await db.People

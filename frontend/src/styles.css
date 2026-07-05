@@ -224,6 +224,13 @@ select:focus {
   margin-top: 3px;
 }
 
+.row-actions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
 .empty {
   color: #657789;
   margin: 6px 0;
@@ -275,5 +282,8 @@ th {
   .topbar {
     align-items: flex-start;
   }
-}
 
+  .row-card {
+    align-items: flex-start;
+  }
+}
